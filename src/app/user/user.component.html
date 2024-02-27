@@ -1,0 +1,148 @@
+<div class="container">
+    <h2>Create Product</h2>
+
+    <form [formGroup]="userData" (ngSubmit)="onSubmit()" class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" formControlName="name" class="form-control" />
+                           
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price:</label>
+                            <input type="text" id="price" formControlName="price" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="Availability">Availability:</label>
+                            <input type="text" id="Availability" formControlName="Availability" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="Brand">Brand:</label>
+                            <input type="text" id="Brand" formControlName="Brand" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="Category">Category:</label>
+                            <input type="text" id="Category" formControlName="Category" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="Colors">Colors:</label>
+                            <input type="text" id="Colors" formControlName="Colors" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="Dimensions">Dimensions:</label>
+                            <input type="text" id="Dimensions" formControlName="Dimensions" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="Images">Images:</label>
+                            <input type="text" id="Images" formControlName="Images" class="form-control" />
+                        </div>
+                        <div class="form-group">
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Inventory">Inventory:</label>
+                            <input type="text" id="Inventory" formControlName="Inventory" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="Rating">Rating:</label>
+                            <input type="text" id="Rating" formControlName="Rating" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="Reviews">Reviews:</label>
+                            <input type="text" id="Reviews" formControlName="Reviews" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="Specifications">Specifications:</label>
+                            <input type="text" id="Specifications" formControlName="Specifications" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="Stock">Stock:</label>
+                            <input type="text" id="Stock" formControlName="Stock" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="serioul_no">Serial Number:</label>
+                            <input type="text" id="serioul_no" formControlName="serioul_no" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="weight">Weight:</label>
+                            <input type="text" id="weight" formControlName="weight" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="description">Description :</label>
+                            <input type="text" id="description" formControlName="description" class="form-control" />
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="SKU">SKU:</label>
+                            <input type="text" id="SKU" formControlName="SKU" class="form-control" />
+                        </div>
+                    </div>
+                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    </form>
+</div>
+
+<div *ngIf="products.length > 0">
+    <h2 style="text-align: center;">Product Details</h2>
+
+    <table class="table table-striped" border="1">
+        <thead>
+            <tr>
+
+                <th>Name</th>
+                <th>Availability</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Colors</th>
+                <th>Dimensions</th>
+                <th>Images</th>
+                <th>Inventory</th>
+                <th>Rating</th>
+                <th>Reviews</th>
+                <th>Specifications</th>
+                <th>Stock</th>
+                <th>serioul_no</th>
+                <th>updated_at</th>
+                <th>weight</th>
+                <!-- Add other columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+
+                <td>{{ product.name }}</td>
+                <td>{{ product.Availability}}</td>
+                <td>{{ product.Brand }}</td>
+                <td>{{ product.Category }}</td>
+                <td>{{ product.Colors}}</td>
+                <td>{{ product.Dimensions}}</td>
+                <td>{{ product.Images}}</td>
+                <td>{{ product.Inventory}}</td>
+                <td>{{ product.Rating}}</td>
+                <td>{{ product.Reviews}}</td>
+                <td>{{ product.Specifications}}</td>
+                <td>{{ product.Stock}}</td>
+                <td>{{ product.serioul_no}}</td>
+                <td>{{ product.updated_at}}</td>
+                <td>{{ product.weight}}</td>
+                <td>{{ product.SKU}}</td>
+                <!-- Add other columns as needed -->
+            </tr>
+        </tbody>
+    </table>
+</div>

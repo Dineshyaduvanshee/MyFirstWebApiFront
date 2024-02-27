@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Center items horizontally */
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-right: 50px;
+    }
+
+    .container {
+      margin-right: 20px;
+    }
+
+    .content {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+      display: flex;
+      justify-content: center; /* Center items horizontally */
+      align-items: center; /* Center items vertically */
+      box-sizing: border-box;
+    }
+
+    .custom-card,
+    .custom-card1 {
+      width: 50%;
+      margin: 20px;
+      box-sizing: border-box;
+    }
+
+    .custom-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Indicosmic.com</h1>
+    <div class="container ">
+      <nav>
+        <ul>
+          <li><a routerLink="/admin" (click)="showAdminContent = true">Admin</a></li>
+          <li><a routerLink="/student" (click)="showStudentContent = true">Students</a></li>
+          <li><a routerLink="/user"(click)="showUserContent = true">Products</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="content">
+    <div class="custom-card  mt-3">
+      <div class="card-body custom-form"> 
+        <h5 class="card-title">Save Admin Record</h5>
+        <form [formGroup]="formAdmin" (ngSubmit)="onSubmitAdmin()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name : ">
+          </div>
+
+          <div class="mb-3">
+            <label for="course" class="form-label">Course:</label>
+            <input type="text" class="form-control" id="course" formControlName="course" placeholder="Course : ">
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email : ">
+          </div>
+
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone:</label>
+            <input type="tel" class="form-control" id="phone" formControlName="phone" placeholder="Phone : ">
+          </div>
+
+          <button type="submit" class="btn btn-success" [disabled]="formAdmin.invalid">Submit</button> |
+         
+          <button type="button" class="btn btn-info" (click)="onResetFormAdmin()">Reset Form</button>
+
+        </form>
+      </div>
+     
+    </div>
+
+    <div class="custom-card mt-3">
+
+      <div class="card-body custom-form">
+        <h5 class="card-title">Save Student Record</h5>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+
+          <div class="mb-3">
+            <label for="course" class="form-label">Course:</label>
+            <input type="text" class="form-control" id="course" formControlName="course">
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+          </div>
+
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone:</label>
+            <input type="tel" class="form-control" id="phone" formControlName="phone">
+          </div>
+
+          <button type="submit" class="btn btn-success" [disabled]="form.invalid">Submit</button> |
+          <button type="button" class="btn btn-info" (click)="onResetForm()">Reset Form</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+ 
+
+  <div class="content">
+    <div class="row">
+      <div class="col-md-6">
+        
+          <div class="card-body " *ngIf="showAdminContent">
+            <app-admin [admins]="admins"></app-admin>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row ">
+        <div class="col-md-6">
+          <div  *ngIf="showStudentContent">
+            <app-student></app-student>
+          </div>
+        </div>
+      </div>
+
+      
+  </div>
+  
+  <div class="row custom-card mt-3">
+    <div class="col-md-6">
+      <div *ngIf="showUserContent">
+        <app-user></app-user>
+      </div>
+    
+    </div>
+  </div>
+ 
+ 
+</body>
+
+</html>

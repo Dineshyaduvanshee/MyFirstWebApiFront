@@ -1,0 +1,30 @@
+
+<div *ngIf="admins.length > 0">
+    <h2>Admin Records</h2>
+  
+    <table class="table table-striped" border="1">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <!-- Add other columns as needed -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let admin of admins">
+          <td>{{ admin.name }}</td>
+          <td>{{ admin.course }}</td>
+          <td>{{ admin.email }}</td>
+          <td>{{ admin.phone }}</td>
+          <!-- Add other columns as needed -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+<!--   
+  <button (click)="printData()">Test</button>
+  <button (click)="getAdmins()">check</button>
+   -->

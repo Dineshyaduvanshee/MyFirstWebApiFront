@@ -1,0 +1,29 @@
+
+
+    <div *ngIf="students.length > 0">
+        <h2>Student Records</h2>
+      
+        <table class="table table-striped" border="1">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Course</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <!-- Add other columns as needed -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of students">
+              <td>{{ student.name }}</td>
+              <td>{{ student.course }}</td>
+              <td>{{ student.email }}</td>
+              <td>{{ student.phone }}</td>
+              <!-- Add other columns as needed -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+<!-- 
+  <button (click)="printData()">Test</button>
+  <button (click)="getStudents()">check</button> -->
