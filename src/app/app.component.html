@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -46,8 +46,10 @@
       box-sizing: border-box;
       padding: 20px;
       display: flex;
-      justify-content: center; /* Center items horizontally */
-      align-items: center; /* Center items vertically */
+      justify-content: center;
+      /* Center items horizontally */
+      align-items: center;
+      /* Center items vertically */
       box-sizing: border-box;
     }
 
@@ -77,15 +79,23 @@
         <ul>
           <li><a routerLink="/admin" (click)="showAdminContent = true">Admin</a></li>
           <li><a routerLink="/student" (click)="showStudentContent = true">Students</a></li>
-          <li><a routerLink="/user"(click)="showUserContent = true">Products</a></li>
+          <li><a routerLink="/user" (click)="showUserContent = true">Products</a></li>
+          <li><a routerLink="/login" (click)="showLoginContent = true">Login</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <div class="content">
+  <div class="content" >
+    <div class="custom-card1  mt-3" *ngIf="showLoginContent">
+      <div>
+        <div >
+          <app-login (loginSuccess)="handleLoginSuccess($event)"></app-login>
+        </div>
+      </div>
+    </div>
     <div class="custom-card  mt-3">
-      <div class="card-body custom-form"> 
+      <div class="card-body custom-form">
         <h5 class="card-title">Save Admin Record</h5>
         <form [formGroup]="formAdmin" (ngSubmit)="onSubmitAdmin()">
           <div class="mb-3">
@@ -109,12 +119,12 @@
           </div>
 
           <button type="submit" class="btn btn-success" [disabled]="formAdmin.invalid">Submit</button> |
-         
+
           <button type="button" class="btn btn-info" (click)="onResetFormAdmin()">Reset Form</button>
 
         </form>
       </div>
-     
+
     </div>
 
     <div class="custom-card mt-3">
@@ -150,39 +160,46 @@
       </div>
     </div>
   </div>
- 
+
 
   <div class="content">
     <div class="row">
       <div class="col-md-6">
-        
-          <div class="card-body " *ngIf="showAdminContent">
-            <app-admin [admins]="admins"></app-admin>
-          </div>
-        </div>
-      </div>
-  
-      <div class="row ">
-        <div class="col-md-6">
-          <div  *ngIf="showStudentContent">
-            <app-student></app-student>
-          </div>
-        </div>
-      </div>
 
-      
+        <div class="card-body " *ngIf="showAdminContent">
+          <app-admin [admins]="admins"></app-admin>
+        </div>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="col-md-6">
+        <div *ngIf="showStudentContent">
+          <app-student></app-student>
+        </div>
+      </div>
+    </div>
+
+
   </div>
-  
-  <div class="row custom-card mt-3">
-    <div class="col-md-6">
+  <!-- class="row custom-card mt-3"
+   class="col-md-6"-->
+  <div>
+    <div>
       <div *ngIf="showUserContent">
         <app-user></app-user>
       </div>
-    
+
     </div>
   </div>
- 
- 
+  <!-- <div>
+    <div>
+      <div *ngIf="showLoginContent">
+        <app-login></app-login>
+      </div>
+    </div>
+  </div> -->
+
 </body>
 
 </html>

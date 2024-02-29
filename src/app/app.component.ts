@@ -61,6 +61,8 @@ throw new Error('Method not implemented.');
   showAdminContent: boolean = false;
   showStudentContent: boolean = false;
   showUserContent: boolean = false;
+  showLoginContent:boolean = false;
+  userLoggedIn: boolean = false;
   constructor(private fb: FormBuilder, private http: HttpClient) { // Inject HttpClient
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(191)]],
@@ -77,6 +79,7 @@ throw new Error('Method not implemented.');
   }
 
   onSubmit() {
+    debugger;
     if (this.form.valid) {
       const formData = this.form.value;
 
@@ -162,5 +165,10 @@ throw new Error('Method not implemented.');
       timer: 2000, // Adjust the timer as needed
       showConfirmButton: false
     });
+  }
+
+  handleLoginSuccess(message: string) {
+    console.log(message);
+    this.userLoggedIn = true;
   }
 }

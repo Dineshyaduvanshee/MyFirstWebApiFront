@@ -7,6 +7,13 @@
     padding: 20px;
   }
   
+  .custom-card1 {
+   
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    height: 500px;
+  }
 
   header {
     background-color: #333;

@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyserviceService } from '../myservice.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -44,9 +44,10 @@ export class UserComponent implements OnInit {
   }
   getProducts() {
     // Read operation
-    this.http.get<any>('http://127.0.0.1:8000/api/product') // No need to explicitly define the type as any[]
+    this.http.get<any>('http://127.0.0.1:8000/api/products') // No need to explicitly define the type as any[]
       .subscribe(response => {
         console.log('Product retrieved successfully', response);
+        
         this.products = response.data; // Assign the 'data' property to 'admins'
       });
   }
@@ -106,14 +107,18 @@ export class UserComponent implements OnInit {
   // }
 
   onSubmit(): void {
+   // debugger;
     if (this.userData.valid) {
+      this.showSuccessAlert('Product submitted successfully');
       // Convert the form data to a plain object
       const formData = { ...this.userData.value };
-  
+      
       // Call the product service to store the product
       this.myService.createProduct(formData).subscribe(
+        
         (response) => {
           console.log('Product stored successfully:', response);
+         
           // Optionally, reset the form after successful submission
           this.userData.reset();
         },
@@ -128,5 +133,13 @@ export class UserComponent implements OnInit {
       );
     }
   }
-  
+  private showSuccessAlert(message: string) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Success!',
+      text: message,
+      timer: 2000, // Adjust the timer as needed
+      showConfirmButton: false
+    });
+  }
 }

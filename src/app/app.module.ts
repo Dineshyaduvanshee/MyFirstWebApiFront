@@ -7,19 +7,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { StudentComponent } from './student/student.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
     UserComponent,
-    StudentComponent
+    StudentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
     
   ],
   providers: [],
