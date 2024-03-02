@@ -10,14 +10,14 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
   // user = { username: '', password: '' };
-  @Input() user: any[] = [];
-  formLogin : FormGroup;
+  @Input() users: any[] = [];
+  // formLogin : FormGroup;
   @Output() loginSuccess = new EventEmitter<string>();
   constructor(private fb: FormBuilder, private http : HttpClient) {
-    this.formLogin = this.fb.group({
-      username: ['', [Validators.required, Validators.maxLength(191)]],
-      password: ['', [Validators.required, Validators.maxLength(191)]],
-    });
+    // this.formLogin = this.fb.group({
+    //   username: ['', [Validators.required, Validators.maxLength(191)]],
+    //   password: ['', [Validators.required, Validators.maxLength(191)]],
+    // });
     
   }
   ngOnInit(): void {
@@ -75,34 +75,34 @@ export class LoginComponent implements OnInit {
     this.http.get<any>('http://127.0.0.1:8000/api/login') // No need to explicitly define the type as any[]
       .subscribe(response => {
         console.log('Login retrieved successfully', response);
-        this.user = response.data; // Assign the 'data' property to 'admins'
+        this.users = response.data; // Assign the 'data' property to 'admins'
       });
   }
 
-  onSubmitLogin() {
-    //debugger;
-    if (this.formLogin.valid) {
+  // onSubmitLogin() {
+  //   //debugger;
+  //   if (this.formLogin.valid) {
       
-      const formData = this.formLogin.value;
-      this.http.post('http://127.0.0.1:8000/api/login',formData)
-        .subscribe(response => {
-          console.log('Login successfully', response);
-          this.showSuccessAlert('User successfully logged in');
-          this.loginSuccess.emit('Loged in  successfully ');
-          this.formLogin.reset();
-        });
-    }
-    this.loginSuccess.emit('User successfully logged in');
-  }
+  //     const formData = this.formLogin.value;
+  //     this.http.post('http://127.0.0.1:8000/api/login',formData)
+  //       .subscribe(response => {
+  //         console.log('Login successfully', response);
+  //         this.showSuccessAlert('User successfully logged in');
+  //         this.loginSuccess.emit('Loged in  successfully ');
+  //         this.formLogin.reset();
+  //       });
+  //   }
+  //   this.loginSuccess.emit('User successfully logged in');
+  // }
 
-  private showSuccessAlert(message: string) {
-    Swal.fire({
-      icon: 'success',
-      title: 'Success!',
-      text: message,
-      timer: 2000, // Adjust the timer as needed
-      showConfirmButton: false
-    });
-  }
+  // private showSuccessAlert(message: string) {
+  //   Swal.fire({
+  //     icon: 'success',
+  //     title: 'Success!',
+  //     text: message,
+  //     timer: 2000, // Adjust the timer as needed
+  //     showConfirmButton: false
+  //   });
+  // }
  
 }

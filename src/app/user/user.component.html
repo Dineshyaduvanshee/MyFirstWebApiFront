@@ -1,4 +1,5 @@
-<div class="container row custom-card mt-3">
+<hr>
+<div class="container  custom-card mt-3" style="border: 2px solid grey;padding: 10px;">
     <h2 style="text-align: center;">Create Product</h2>
 
     <form [formGroup]="userData" (ngSubmit)="onSubmit()" class="row">
@@ -46,7 +47,14 @@
                 <label for="Images">Images:</label>
                 <input type="text" id="Images" formControlName="Images" class="form-control" />
             </div>
+
+            <div class="form-group">
+                <!-- <label for="" class="form-control"></label> -->
+                <br>
+                <button type="submit" class="btn btn-primary" >Submit</button>
+            </div>
         </div>
+        
         <div class="col-md-3">
 
             <div class="form-group">
@@ -68,10 +76,7 @@
                 <label for="Specifications">Specifications:</label>
                 <input type="text" id="Specifications" formControlName="Specifications" class="form-control" />
             </div>
-            <div class="form-group">
-                <label for="" class="form-control"></label>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+          
         </div>
         <div class="col-md-3">
             <div class="form-group">
@@ -103,7 +108,7 @@
         <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
     </form>
 </div>
-
+<hr>
 <div *ngIf="products.length > 0">
     <h2 style="text-align: center;">Product Details</h2>
 
@@ -126,6 +131,7 @@
                 <th>serioul_no</th>
                 <th>updated_at</th>
                 <th>weight</th>
+                <th>Stock Keeping Unit</th>
                 <!-- Add other columns as needed -->
             </tr>
         </thead>

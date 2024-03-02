@@ -16,7 +16,7 @@
     }
 
     header {
-      background-color: #333;
+      background-color:rgb(109, 141, 235);
       color: white;
       padding: 1rem;
       width: 100%;
@@ -90,7 +90,25 @@
     <div class="custom-card1  mt-3" *ngIf="showLoginContent">
       <div>
         <div >
-          <app-login (loginSuccess)="handleLoginSuccess($event)"></app-login>
+          <!-- <app-login (loginSuccess)="handleLoginSuccess($event)"></app-login> -->
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <h2>Login</h2>
+                <form [formGroup]="formLogin" (ngSubmit)="onSubmitLogin()">
+                  <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" formControlName="username" class="form-control" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" formControlName="password" class="form-control" required />
+                  </div>
+                  <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+              </div>
+            </div>
+        </div>
         </div>
       </div>
     </div>
@@ -180,25 +198,33 @@
       </div>
     </div>
 
-
+   
   </div>
   <!-- class="row custom-card mt-3"
    class="col-md-6"-->
-  <div>
-    <div>
-      <div *ngIf="showUserContent">
-        <app-user></app-user>
-      </div>
 
-    </div>
-  </div>
-  <!-- <div>
+   <!-- <div>
     <div>
       <div *ngIf="showLoginContent">
         <app-login></app-login>
       </div>
     </div>
   </div> -->
+
+  <div>
+    <div>
+      <div *ngIf="showUserContent">
+        <app-user></app-user>
+      </div>
+    </div>
+
+    <div>
+      <div *ngIf="showLoginContent">
+        <app-login></app-login>
+      </div>
+    </div>
+  </div>
+  
 
 </body>
 

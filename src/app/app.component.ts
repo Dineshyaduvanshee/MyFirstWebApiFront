@@ -39,7 +39,7 @@
 // }
 
 
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http'; // Import HttpClient
 import Swal from 'sweetalert2';
@@ -56,13 +56,16 @@ throw new Error('Method not implemented.');
   title = 'MyFirstWebApiFront';
   form: FormGroup;
   formAdmin : FormGroup;
+  formLogin : FormGroup;
   students: any[] = [];
   admins: any[] = [];
+  @Input() user: any[] = [];
   showAdminContent: boolean = false;
   showStudentContent: boolean = false;
   showUserContent: boolean = false;
   showLoginContent:boolean = false;
   userLoggedIn: boolean = false;
+  @Output() loginSuccess = new EventEmitter<string>();
   constructor(private fb: FormBuilder, private http: HttpClient) { // Inject HttpClient
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(191)]],
@@ -75,6 +78,10 @@ throw new Error('Method not implemented.');
       course: ['', [Validators.required, Validators.maxLength(191)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(191)]],
       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+    });
+    this.formLogin = this.fb.group({
+      username: ['', [Validators.required, Validators.maxLength(191)]],
+      password: ['', [Validators.required, Validators.maxLength(191)]],
     });
   }
 
@@ -104,6 +111,21 @@ throw new Error('Method not implemented.');
           this.form.reset();
         });
     }
+  }
+  onSubmitLogin() {
+    //debugger;
+    if (this.formLogin.valid) {
+      
+      const formData = this.formLogin.value;
+      this.http.post('http://127.0.0.1:8000/api/login',formData)
+        .subscribe(response => {
+          console.log('Login successfully', response);
+          this.showSuccessAlert('User successfully logged in');
+          this.loginSuccess.emit('Loged in  successfully ');
+          this.formLogin.reset();
+        });
+    }
+    this.loginSuccess.emit('User successfully logged in');
   }
 
   getStudents() {
